@@ -12,15 +12,18 @@ public class MainGenerator {
     public static void main(String[] args) throws TemplateException, IOException {
         //静态文件生成
         String projectPath = System.getProperty("user.dir");
+        File parentFile = new File(projectPath).getParentFile();
 
-        String inputPath = projectPath+ File.separator+"zq-generator-demo-projects"+ File.separator+"acm-template";
+
+        String inputPath = new File(parentFile,"zq-generator-demo-projects/acm-template").getAbsolutePath();
+//                projectPath+ File.separator+"zq-generator-demo-projects"+ File.separator+"acm-template";
         String outputPath = projectPath;
         StaticGenerator.copyFilesByRecursive(inputPath,outputPath);
         //动态文件生成
 
 
 //        String projectPath = System.getProperty("user.dir")+File.separator+"zq-generator-basic";
-        String dynamicInputPath = projectPath + File.separator+"zq-generator-basic/src/main/resources/templates/MainTemplate.java.ftl";
+        String dynamicInputPath = projectPath + File.separator+"src/main/resources/templates/MainTemplate.java.ftl";
         String dynamicOutputPath = projectPath + File.separator +"acm-template/src/com/zq/acm/MainTemplate.java";
 
         MainTemplateConfig mainTemplateConfig = new MainTemplateConfig();

@@ -14,8 +14,10 @@ import java.io.IOException;
 public class StaticGenerator {
     public static void main(String[] args) {
         String projectPath = System.getProperty("user.dir");
+        File parentFile = new File(projectPath).getParentFile();
 
-        String inputPath = projectPath+ File.separator+"zq-generator-demo-projects"+ File.separator+"acm-template";
+        String inputPath = new File(parentFile,"zq-generator-demo-projects/acm-template").getAbsolutePath() ;
+//                rojectPath+ File.separator+"zq-generator-demo-projects"+ File.separator+"acm-template";
         String outputPath = projectPath;
         copyFilesByRecursive(inputPath,outputPath);
     }
