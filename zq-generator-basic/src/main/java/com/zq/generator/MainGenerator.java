@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class MainGenerator {
 
-    public static void main(String[] args) throws TemplateException, IOException {
+    public static void doGenerate(Object model) throws TemplateException, IOException {
         //静态文件生成
         String projectPath = System.getProperty("user.dir");
         File parentFile = new File(projectPath).getParentFile();
@@ -25,11 +25,16 @@ public class MainGenerator {
 //        String projectPath = System.getProperty("user.dir")+File.separator+"zq-generator-basic";
         String dynamicInputPath = projectPath + File.separator+"src/main/resources/templates/MainTemplate.java.ftl";
         String dynamicOutputPath = projectPath + File.separator +"acm-template/src/com/zq/acm/MainTemplate.java";
+        DynamicGenerator.doGenerate(dynamicInputPath,dynamicOutputPath,model);
+    }
+
+    public static void main(String[] args) throws TemplateException, IOException {
+
 
         MainTemplateConfig mainTemplateConfig = new MainTemplateConfig();
         mainTemplateConfig.setAuthor("lspzq");
         mainTemplateConfig.setLoop(true);
         mainTemplateConfig.setOutputText("我输出辣：");
-        DynamicGenerator.doGenerate(dynamicInputPath,dynamicOutputPath,mainTemplateConfig);
+        doGenerate(mainTemplateConfig);
     }
 }
